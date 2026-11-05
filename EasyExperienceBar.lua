@@ -88,6 +88,7 @@ function EasyExperienceBar:Options()
     if EasyExperienceBar.global.resetReload == nil then EasyExperienceBar.global.resetReload = false end
     if EasyExperienceBar.global.hideXpBar == nil then EasyExperienceBar.global.hideXpBar = true end
     if EasyExperienceBar.global.lockBar == nil then EasyExperienceBar.global.lockBar = false end
+    if EasyExperienceBar.global.barAlpha == nil then EasyExperienceBar.global.barAlpha = 1 end
     if EasyExperienceBar.global.font == nil then EasyExperienceBar.global.font = "Fonts\\FRIZQT__.TTF" end
     if EasyExperienceBar.global.fontOutline == nil then EasyExperienceBar.global.fontOutline = "THICKOUTLINE" end
     if EasyExperienceBar.global.bartexture == nil then EasyExperienceBar.global.bartexture = "Interface\\TargetingFrame\\UI-StatusBar" end
@@ -271,6 +272,22 @@ function EasyExperienceBar:Options()
                                             EasyExperienceBar.global.lockBar = true
                                          end
                     end,
+            },
+            alpha = {
+                type = 'range',
+                order = 13.5,
+                name = L["Opacity"],
+                desc = L["Adjust the opacity of the entire bar, including text (0% = transparent, 100% = opaque)"],
+                min = 0,
+                max = 1,
+                step = 0.01,
+                isPercent = true,
+                width = "full",
+                get = function(info) return EasyExperienceBar.global.barAlpha end,
+                set = function(info, val)
+                    EasyExperienceBar.global.barAlpha = val
+                    EasyExperienceBar.MainFrame:SetAlpha(val)
+                end,
             },
             width = {
                 type = 'range',
@@ -582,6 +599,7 @@ function EasyExperienceBar:OnInitialize()
    
     EasyExperienceBar.MainFrame:SetFrameStrata("BACKGROUND")
     EasyExperienceBar.MainFrame:SetSize(width, height)
+    EasyExperienceBar.MainFrame:SetAlpha(EasyExperienceBar.global.barAlpha)
     EasyExperienceBar.MainFrame:SetMovable(true)
 
     if not EasyExperienceBar.session.location then
