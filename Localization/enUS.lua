@@ -19,6 +19,8 @@ L["Hide Default Experience Bar"] = true
 L["Hides the standard XP bar"] = true
 L["Lock Bar"] = true
 L["Disables the click and drag to move function"] = true
+L["Opacity"] = true
+L["Adjust the opacity of the entire bar, including text (0% = transparent, 100% = opaque)"] = true
 L["Size"] = true
 L["Adjust bar size"] = true
 L["Font"] = true
